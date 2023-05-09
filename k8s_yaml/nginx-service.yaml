@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+  labels:
+    app: nginx
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+  selector:
+    app: nginx
+
+# 这个 YAML 文件定义了一个 Service，其中 type 字段指定了 Service 的类型为 ClusterIP
+# ports 字段定义了 Service 监听的端口以及对应的 Pod 端口
+# selector 字段指定了要暴露的 Pod 匹配标签为 app: nginx。
+
+# kubectl apply -f nginx-service.yaml

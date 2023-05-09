@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3  # 定义副本数量
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+
+# 这个 YAML 文件定义了一个 Deployment，其中 replicas 字段指定了要创建的 Pod 副本数，
+# selector 字段指定了将要部署的 Pod 匹配标签为 app: nginx，
+# template 字段则定义了 Pod 的模板，其中包含了要部署的容器，这里使用了 Nginx 镜像，并暴露了容器内部的 80 端口。
+
+# kubectl apply -f nginx-deployment.yaml
